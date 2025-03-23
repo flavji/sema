@@ -1,0 +1,82 @@
+package reportGeneration
+
+import (
+	"encoding/json"
+	"fmt"
+	"sema/models/delta"
+	"log"
+	"github.com/dchenk/go-render-quill"
+)
+
+
+func GeneratePDF(reportName string, reportContent []map[string]interface{}) {
+
+	fmt.Println(reportName)		
+	// Make Title page with reportName
+	
+	for _, sectionData := range(reportContent) {
+		sectionName := sectionData["sectionTitle"].(string)
+		fmt.Println("Section Name: ", sectionName)
+		// Make Header for section name
+
+
+		subSectionData := sectionData["subsections"].([]map[string]interface{})
+
+		// fmt.Println("Subsection data: ", subSectionData)
+
+		for _, subsection := range(subSectionData) {
+			// fmt.Println("subsection: ", subsection)
+			subSectionTitle := subsection["title"].(string)
+			// Header for subsection name
+			fmt.Println("\tSubsection Title: ", subSectionTitle)
+			subSectionContent, ok := subsection["content"].(interface {})
+			if !ok {
+				continue
+			}
+
+			jsonStr, ok := subSectionContent.(string)
+			if !ok {
+				continue
+				// put error here later 
+				// log.Fatal("Expected a string but got a different type")
+
+			}
+
+
+
+			var parsedDelta delta.Delta
+			err := json.Unmarshal([]byte(jsonStr), &parsedDelta)
+			if err != nil {
+				continue
+				// log.Fatal("Failed to unmarshal JSON:", err)
+
+			}
+			
+			fmt.Println("\tSubsection Contents: ", parsedDelta)
+
+			opsJSON, err := json.Marshal(parsedDelta.Delta.Delta.Ops)
+			if err != nil {
+				log.Fatalf("Error marshalling Ops: %v", err)
+			}
+
+			html, err := quill.Render(opsJSON)
+			if err != nil {
+				log.Fatalf("Error converting Delta to HTML: %v", err)
+			}
+			fmt.Println("html: ", string(html))
+
+
+			/*
+			Subsection Contents:  {"type":"delta","delta":{"editorId":"
+			TOE Summary Specification","delta":{"ops":[{"insert":"end\n"}]}}}
+			*/
+			// subSectionContentO
+			// report contents, theses are deltas
+			// put under subsection header
+
+			fmt.Println()
+		}		
+
+	}
+
+}

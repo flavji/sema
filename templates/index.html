@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../static/css/home.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">SEMA</div>
+        <nav class="nav">
+            <!-- not implemented yet
+            <a href="#">Home</a>
+            <a href="#">My Reports</a>
+            <a href="#">Settings</a>
+            -->
+        </nav>
+        <div class="user-menu">
+            <!-- TODO: add a user menu --> 
+
+        </div>
+    </header>
+
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Enter Report Name</h2>
+            <input type="text" id="reportNameInput" placeholder="Enter report name" />
+            <button id="submitButton">Create Report</button>
+            <button id="cancelButton">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <button id="add-report-btn" onclick="toggleSubmenu()">+</button>
+
+        <!-- Submenu for report generation options -->
+        <div id="submenu">
+            <a href="javascript:void(0)" onclick="createReport('cc conformance')">CC conformance</a>
+            <a href="javascript:void(0)" onclick="">PP conformance</a>
+            <a href="javascript:void(0)" onclick="">PP config conformance</a>
+        </div>
+
+        <!-- Grid for Report Previews -->
+        <div id="report-grid" class="grid">
+            <!-- Dynamic content goes here -->
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 SEMA. All rights reserved.</p>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="../static/js/report_grid.js"></script>
+</body>
+</html>
+
