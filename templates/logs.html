@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Report Logs</title>
+  <link rel="stylesheet" href="/static/css/logs.css"/>
+</head>
+<body>
+  <header>
+    <h1>Logs for Report: {{ .reportID }}</h1>
+    <a href="/report/{{ .reportID }}">← Back to Report</a>
+  </header>
+  <main>
+    <ul class="log-list">
+      {{ range .logs }}
+        <li>{{ . }}</li>
+      {{ end }}
+    </ul>
+  </main>
+</body>
+</html>

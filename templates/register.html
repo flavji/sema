@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register with Firebase</title>
+  <!-- Add type="module" to indicate it's an ES module -->
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+</head>
+<body>
+  <h2>Register or Login with Google</h2>
+  <button id="google-login-btn">Login with Google</button>
+
+   <script type="module">
+    // Initialize Firebase
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+    import { getAuth, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAnQ9Sm9sRD0xuuy-SInpUVK22q1q_NeRA",
+      authDomain: "sema-7c193.firebaseapp.com",
+      projectId: "sema-7c193",
+      storageBucket: "sema-7c193.firebasestorage.app",
+      messagingSenderId: "460573468757",
+      appId: "1:460573468757:web:d9c2b67f8b20d434d4ccdc",
+      measurementId: "G-2V6YHC7836"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
+
+    document.getElementById("google-login-btn").addEventListener("click", function () {
+      signInWithPopup(auth, googleProvider)
+        .then((result) => {
+          const user = result.user;
+          console.log("User Info: ", user);
+
+          // Get Firebase ID Token
+          user.getIdToken().then((idToken) => {
+            console.log("Firebase Token:", idToken);
+
+            // Store token in a cookie with HttpOnly flag (set on the backend)
+            document.cookie = `firebaseToken=${idToken}; SameSite=Strict; path=/`;
+
+            // Send token to backend for verification
+            console.log("Sending token to be verified");
+            fetch("/api/auth/verify", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + idToken
+              }
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log("Backend Response:", data);
+
+              // Redirect to dashboard or home page
+              window.location.href = "/";
+            })
+            .catch(error => {
+              // needs a more displaying the error here 
+
+              alert("Login failed: " + error.message);
+              console.error("Backend Error:", error);
+            });
+          });
+        })
+        .catch((error) => {
+          alert("Login failed: " + error.message);
+          console.error("Error: ", error.message);
+        });
+    });
+  </script>
+</body>
+</html>

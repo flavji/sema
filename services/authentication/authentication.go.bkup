@@ -1,0 +1,58 @@
+package authentication
+
+import (
+	"context"
+	"fmt"
+
+	"sema/services/firebase"
+
+	"firebase.google.com/go/auth"
+)
+
+// AuthService handles Firebase Authentication
+type AuthService struct {
+	AuthClient *auth.Client
+}
+
+// NewAuthService initializes Firebase Auth using shared FirebaseApp
+func NewAuthService(firebaseApp *firebase.FirebaseApp) (*AuthService, error) {
+	authClient, err := firebaseApp.App.Auth(context.Background())
+	if err != nil {
+		return nil, fmt.Errorf("error initializing Firebase Auth: %v", err)
+	}
+
+	return &AuthService{AuthClient: authClient}, nil
+}
+
+
+// VerifyToken checks the validity of a Firebase ID token
+func (s *AuthService) VerifyToken(idToken string) (*auth.Token, error) {
+	return s.AuthClient.VerifyIDToken(context.Background(), idToken)
+}
+
+func (s *AuthService) GetUserByUID(uid string) (*auth.UserRecord, error) {
+	return s.AuthClient.GetUser(context.Background(), uid)
+}
+
+func (s *AuthService) GetUIDFromEmail(email string) (string, error) {
+	user, err := s.AuthClient.GetUserByEmail(context.Background(), email)
+	if err != nil {
+		return "", fmt.Errorf("error fetching user by email: %v", err)
+	}
+	return user.UID, nil
+}
+
+
+func (s *AuthService) DestroyUser(idToken string) error {
+
+	
+	err := s.AuthClient.DeleteUser(context.Background(), idToken)
+	if err != nil {
+		return fmt.Errorf("failed to delete user: %w", err)
+	}
+
+	return nil
+}
+
+
+

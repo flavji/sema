@@ -7,31 +7,50 @@
     <link rel="stylesheet" href="../static/css/home.css">
 </head>
 <body>
+
+<script>
+ window.reports = JSON.parse('{{ .reports}}');
+</script>
+
     <!-- Header Section -->
     <header class="header">
         <div class="logo">SEMA</div>
         <nav class="nav">
-            <!-- not implemented yet
-            <a href="#">Home</a>
-            <a href="#">My Reports</a>
-            <a href="#">Settings</a>
-            -->
+            <div class="dropdown">
+                <button class="dropbtn">Settings</button>
+                <div class="dropdown-content">
+                    <button id="deleteAccountButton">Delete Account</button>
+                </div>
+            </div>
         </nav>
-        <div class="user-menu">
-            <!-- TODO: add a user menu --> 
-
-        </div>
     </header>
 
-    
+
+
     <div id="modal" class="modal">
         <div class="modal-content">
-            <h2>Enter Report Name</h2>
+            <h2>Enter Report Name and Select EAL Level</h2>
+            <!-- Report Name Input -->
             <input type="text" id="reportNameInput" placeholder="Enter report name" />
+
+            <!-- EAL Level Dropdown -->
+            <select id="ealLevelSelect">
+                <option value="1">EAL 1</option>
+                <option value="2">EAL 2</option>
+                <option value="3">EAL 3</option>
+                <option value="4">EAL 4</option>
+                <option value="5">EAL 5</option>
+                <option value="6">EAL 6</option>
+                <option value="7">EAL 7</option>
+            </select>
+
+            <!-- Submit and Cancel Buttons -->
             <button id="submitButton">Create Report</button>
             <button id="cancelButton">Cancel</button>
         </div>
     </div>
+
+
 
     <!-- Main Content -->
     <main class="container">
@@ -39,9 +58,9 @@
 
         <!-- Submenu for report generation options -->
         <div id="submenu">
-            <a href="javascript:void(0)" onclick="createReport('cc conformance')">CC conformance</a>
+            <a href="javascript:void(0)" onclick="createReport()">CC conformance</a>
             <a href="javascript:void(0)" onclick="">PP conformance</a>
-            <a href="javascript:void(0)" onclick="">PP config conformance</a>
+            <a href="javascript:void(0)" onclick="">PP config conformance</a> 
         </div>
 
         <!-- Grid for Report Previews -->
@@ -56,7 +75,11 @@
     </footer>
 
     <!-- External JavaScript -->
+    <script src="../static/js/user_settings.js"></script>
     <script src="../static/js/report_grid.js"></script>
 </body>
+
+
 </html>
+
 

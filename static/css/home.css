@@ -27,6 +27,7 @@ body {
 }
 
 .nav a {
+    align-items: left;
     margin: 0 10px;
     text-decoration: none;
     color: #555;
@@ -190,3 +191,54 @@ button {
 button:hover {
   background-color: #f0f0f0;
 }
+
+.report-title {
+    font-size: 12px; /* Small font */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 150px; /* Adjust width */
+}
+
+
+.dropdown {
+  position: relative;
+  left: 20px;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #3498db;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content button {
+  padding: 12px 16px;
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-content button:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
