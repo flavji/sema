@@ -1,6 +1,6 @@
-# SecureReport: Collaborative Editor for Common Criteria Security Reports
+# SEMA 
 
-SecureReport is a real-time, collaborative editing platform designed specifically for building security evaluation reports aligned with the Common Criteria (CC) standard. It offers structured editing, live collaboration, and role-based permissions, streamlining the process for development teams and evaluators.
+SEMA is a real-time, collaborative editing platform designed specifically for building security evaluation reports aligned with the Common Criteria (CC) standard. It offers structured editing, live collaboration, and role-based permissions, streamlining the process for development teams and evaluators.
 
 ---
 
@@ -14,10 +14,6 @@ SecureReport is a real-time, collaborative editing platform designed specificall
 - [Setup and Installation](#setup-and-installation)
 - [Running the Application](#running-the-application)
 - [Running Tests](#running-tests)
-- [Project Structure](#project-structure)
-- [Development Notes](#development-notes)
-- [Contributing](#contributing)
-- [License](#license)
 
 ---
 
