@@ -161,7 +161,6 @@ func (r *FirestoreRepository) CreateReport(reportName, reportID, templateID, use
 		log.Fatalf("Failed to create report document: %v", err)
 	}
 
-	// ✅ Add a log entry
 
 	logEntry := map[string]interface{}{
 		"timestamp": time.Now(),
