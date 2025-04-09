@@ -218,7 +218,7 @@ In another terminal:
 
 
 ```bash
-brew install k6
+brew install k6 # or other system package manager equivalent:
 
 cd sema/test/loadtest
 k6 run http_test.js
