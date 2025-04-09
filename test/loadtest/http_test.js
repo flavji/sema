@@ -6,7 +6,7 @@ export const options = {
   duration: '30s',     // run test for 30 seconds
 };
 
-const BASE_URL = 'http://192.168.1.88:8080';
+const BASE_URL = '';
 
 export default function () {
   // hit the register page

@@ -16,7 +16,6 @@ import (
 	"sema/services/authentication"
 )
 
-// --- Dummy AuthClientInterface Implementation ---
 
 type dummyAuthClient struct{}
 
@@ -47,7 +46,6 @@ func (d *dummyAuthClient) DeleteUser(_ context.Context, uid string) error {
 	return nil
 }
 
-// --- Dummy FirestoreRepository Implementation ---
 
 type dummyRepo struct {
 	repository.FirestoreRepository
@@ -61,7 +59,6 @@ func (r *dummyRepo) IsAdminInReport(uid, reportID string) (bool, error) {
 	return uid == "user123" && reportID == "r1", nil
 }
 
-// --- Helper ---
 
 func performRequestWithCookie(router *gin.Engine, method, path, cookieValue string) *httptest.ResponseRecorder {
 	req, _ := http.NewRequest(method, path, nil)
@@ -73,7 +70,6 @@ func performRequestWithCookie(router *gin.Engine, method, path, cookieValue stri
 	return resp
 }
 
-// --- Tests ---
 
 func TestAuthMiddleware_ValidToken(t *testing.T) {
 	auth := &authentication.AuthService{AuthClient: &dummyAuthClient{}}

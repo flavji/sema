@@ -11,7 +11,7 @@ import (
 )
 
 func setupTestRepo(t *testing.T) *repository.FirestoreRepository {
-	os.Setenv("FIRESTORE_EMULATOR_HOST", "192.168.1.88:8080")
+	os.Setenv("FIRESTORE_EMULATOR_HOST", "127.0.0.1:8080")
 
 	ctx := context.Background()
 	client, err := firestore.NewClient(ctx, "test-project")

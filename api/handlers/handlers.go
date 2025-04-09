@@ -24,7 +24,6 @@ import (
 
 var websocketmanager = websockets.SpawnWebSocketManager()
 
-/* Put in models later */
 type ReportRequest struct { 
 	Type string `json:"type" binding:"required"`
 	Name string `json:"name" binding:"required"`
@@ -36,7 +35,6 @@ type ReportGenerationRequest struct {
 
 }
 
-/* find somewhere else for this */
 func generateID() string {
 	b := make([]byte, 8)
 	_, err := rand.Read(b)
