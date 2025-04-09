@@ -19,7 +19,7 @@ SEMA is a real-time, collaborative editing platform designed specifically for bu
 
 ## Overview
 
-Common Criteria reports are complex, collaborative, and require strict formatting. SecureReport is built to simplify that process. This platform provides a web-based editor that supports multi-user collaboration on structured documents, sectioned by the Common Criteria framework.
+Common Criteria reports are complex, collaborative, and require strict formatting. SEMA is built to simplify that process. This platform provides a web-based editor that supports multi-user collaboration on structured documents, sectioned by the Common Criteria framework.
 
 Documents are broken down into isolated sections and subsections, stored and managed independently. This structure allows granular access control, real-time updates, and better synchronization across large teams working on different parts of a security report.
 
@@ -118,8 +118,8 @@ The backend is built using Go and Gin, with modular handlers for authentication,
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/SecureReport.git
-cd SecureReport
+git clone https://github.com/flavji/sema 
+cd sema
 ```
 ---
 
