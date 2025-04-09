@@ -28,7 +28,6 @@ func setupTestRepo(t *testing.T) *repository.FirestoreRepository {
 		},
 	})
 
-	// ✅ Use the proper test constructor
 	return repository.NewTestFirestoreRepository(client, ctx)
 }
 

@@ -546,7 +546,6 @@ func (r *FirestoreRepository) DeleteReport(reportID string) error {
 		}
 	}
 
-	// ✅ Log the report deletion before deleting the report doc
 	logEntry := map[string]interface{}{
 		"timestamp": time.Now(),
 		"message":   "Report was deleted",
